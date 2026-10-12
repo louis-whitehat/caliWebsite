@@ -1,0 +1,209 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Skill Details | LouisAthletics</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=swap" rel="stylesheet" />
+    <link rel="stylesheet" href="styles.css" />
+  </head>
+  <body>
+    <header class="site-header">
+      <div class="container nav-wrap">
+        <div class="brand">
+          <span class="brand-mark">L</span>
+          <span>LouisAthletics</span>
+        </div>
+        <nav class="main-nav" aria-label="Main navigation">
+          <a href="index.html">Home</a>
+          <a href="skills.html">Skills</a>
+          <a href="athletes.html">Athletes</a>
+        </nav>
+        <a class="button button-small" href="skills.html">Back to Ladder</a>
+      </div>
+    </header>
+
+    <main class="skills-page">
+      <div class="container">
+        <div id="skill-detail-content" class="skill-detail-shell"></div>
+      </div>
+    </main>
+
+    <footer class="site-footer">
+      <div class="container footer-wrap">
+        <p>© <span id="year"></span> LouisAthletics</p>
+        <a href="index.html">Back home</a>
+      </div>
+    </footer>
+
+    <script src="script.js"></script>
+    <script>
+      const skillData = {
+        planche: {
+          name: 'Planche',
+          difficulty: 'Hardest',
+          badge: 'hardest',
+          description: 'A planche is a straight-body hold where the shoulders stay active and the body stays parallel to the floor. It demands extreme shoulder stability, core tension, and scapular control.',
+          progressions: ['Wall planche', 'Tucked planche', 'Half planche', 'Straight planche hold'],
+          time: '6 to 18 months for most people, depending on base strength and consistency.'
+        },
+        '90-degree-handstand-push-up': {
+          name: '90 Degree Handstand Push Up',
+          difficulty: 'Hardest',
+          badge: 'hardest',
+          description: 'A 90-degree handstand push-up is a deeply angled overhead press done in a handstand position. It requires shoulder mobility, balance, and serious pressing strength.',
+          progressions: ['Wall handstand', 'Pike push-up', 'Half handstand push-up', '90° handstand push-up hold'],
+          time: '8 to 20 months with focused shoulder and balance work.'
+        },
+        'deep-handstand-push-up': {
+          name: 'Deep Handstand Push Up',
+          difficulty: 'Very Hard',
+          badge: 'very-hard',
+          description: 'A deep handstand push-up uses a full range of motion and heavy shoulder tension. It is one of the most demanding pressing skills in bodyweight training.',
+          progressions: ['Wall headstand balance', 'Pike push-up', 'Elevated pike press', 'Deep handstand push-up reps'],
+          time: '8 to 18 months depending on flexibility and pressing strength.'
+        },
+        'front-lever': {
+          name: 'Front Lever',
+          difficulty: 'Very Hard',
+          badge: 'very-hard',
+          description: 'The front lever is a hanging body line where the torso stays horizontal and the upper body supports the entire position. It builds back strength and body tension.',
+          progressions: ['Tuck front lever', 'Advanced tuck', 'Straddle front lever', 'Full front lever'],
+          time: '6 to 15 months with regular back and core training.'
+        },
+        'back-lever': {
+          name: 'Back Lever',
+          difficulty: 'Very Hard',
+          badge: 'very-hard',
+          description: 'The back lever is a posterior-chain hold with the body parallel to the floor. It demands an active back, glutes, and strong control over shoulder position.',
+          progressions: ['Tuck back lever', 'Straddle back lever', 'Half back lever', 'Full back lever'],
+          time: '6 to 16 months depending on back strength and scapular control.'
+        },
+        'human-flag': {
+          name: 'Human Flag',
+          difficulty: 'Hard',
+          badge: 'hard',
+          description: 'A human flag is a lateral hold where the body stays vertical and parallel to the bar. It trains grip, obliques, and full-body tension.',
+          progressions: ['Vertical tuck flag', 'Incline flag', 'Straddle flag', 'Full human flag'],
+          time: '8 to 18 months for most lifters.'
+        },
+        'one-arm-pull-up': {
+          name: 'One Arm Pull Up',
+          difficulty: 'Hard',
+          badge: 'hard',
+          description: 'This is a single-arm pull-up done with one arm taking the full load. It requires immense grip, pulling strength, and core stability.',
+          progressions: ['Assisted one-arm pull-up', 'Towel rows', 'One-arm chin-up', 'One-arm pull-up'],
+          time: '12 to 24 months depending on pulling base.'
+        },
+        'dragon-flag': {
+          name: 'Dragon Flag',
+          difficulty: 'Hard',
+          badge: 'hard',
+          description: 'The dragon flag is a brutal core hold where the body stays fully straight while the hips are lifted from a hanging position. It develops deep core control and strength.',
+          progressions: ['Small dragon flag hold', 'Bent knee dragon flag', 'Straddle dragon flag', 'Full dragon flag'],
+          time: '6 to 14 months with focused abdominal work.'
+        },
+        'ring-dip': {
+          name: 'Ring Dip',
+          difficulty: 'Medium',
+          badge: 'medium',
+          description: 'A ring dip is a press with greater instability and range than a standard dip. It builds upper-body strength while strengthening stabilizers.',
+          progressions: ['Bench dip', 'Regular dip', 'Ring support hold', 'Ring dip'],
+          time: '4 to 10 months with consistent pressing work.'
+        },
+        'pull-up': {
+          name: 'Pull Up',
+          difficulty: 'Easy',
+          badge: 'easy',
+          description: 'The pull-up is the basic vertical pulling movement. It trains the lats, biceps, upper back, and forearms while building a foundational pulling base.',
+          progressions: ['Band-assisted pull-up', 'Negatives', 'Straight pull-up', 'Weighted or strict pull-up'],
+          time: '2 to 6 months for most beginners.'
+        },
+        dip: {
+          name: 'Dip',
+          difficulty: 'Easy',
+          badge: 'easy',
+          description: 'A dip is a pressing movement that targets the chest, triceps, and shoulders while teaching overhead control and body tension.',
+          progressions: ['Bench dip', 'Box dip', 'Parallel bar dip', 'Weighted dip'],
+          time: '2 to 8 months depending on pressing base.'
+        },
+        'normal-handstand-push-up': {
+          name: 'Normal Handstand Push Up',
+          difficulty: 'Easy',
+          badge: 'easy',
+          description: 'The normal handstand push-up is a bodyweight pressing skill done in a handstand line. It combines overhead strength with balance and shoulder control.',
+          progressions: ['Wall handstand', 'Pike push-up', 'Half handstand push-up', 'Full handstand push-up'],
+          time: '4 to 12 months with regular practice.'
+        },
+        handstand: {
+          name: 'Handstand',
+          difficulty: 'Easy',
+          badge: 'easy',
+          description: 'A handstand is the ability to balance upside down with the body straight and the shoulders active. It builds shoulder stability, balance, and body awareness.',
+          progressions: ['Wall support', 'Wall holds', 'Freestanding handstand practice', 'Longer freestanding holds'],
+          time: '1 to 6 months for beginners.'
+        },
+        'muscle-up': {
+          name: 'Muscle Up',
+          difficulty: 'Easy',
+          badge: 'easy',
+          description: 'The muscle-up combines a pull-up and dip into one continuous movement. It requires power, shoulder control, and strong timing between the pull and the dip.',
+          progressions: ['Pull-up mechanics', 'Dip strength', 'False grip work', 'Negative muscle-up', 'Full muscle-up'],
+          time: '4 to 12 months depending on base strength.'
+        },
+        'push-up': {
+          name: 'Push Up',
+          difficulty: 'Easiest',
+          badge: 'easiest',
+          description: 'The push-up is a foundational pressing movement that teaches proper shoulder alignment, body tension, and upper-body strength.',
+          progressions: ['Incline push-up', 'Standard push-up', 'Diamond push-up', 'Weighted push-up'],
+          time: '1 to 3 months for most beginners.'
+        }
+      };
+
+      const params = new URLSearchParams(window.location.search);
+      const key = params.get('skill') || 'planche';
+      const skill = skillData[key] || skillData.planche;
+
+      const content = document.getElementById('skill-detail-content');
+      content.innerHTML = `
+        <div class="skill-detail-card">
+          <p class="eyebrow">Skill detail</p>
+          <div class="detail-header">
+            <h1>${skill.name}</h1>
+            <span class="skill-level ${skill.badge}">${skill.difficulty}</span>
+          </div>
+
+          <div class="detail-layout">
+            <div class="detail-copy">
+              <h2>What it is</h2>
+              <p>${skill.description}</p>
+
+              <h2>Progressions</h2>
+              <ul>
+                ${skill.progressions.map(item => `<li>${item}</li>`).join('')}
+              </ul>
+            </div>
+
+            <aside class="detail-side">
+              <div class="info-box">
+                <span class="info-label">Time to achieve</span>
+                <strong>${skill.time}</strong>
+              </div>
+              <div class="info-box">
+                <span class="info-label">Difficulty</span>
+                <strong>${skill.difficulty}</strong>
+              </div>
+            </aside>
+          </div>
+
+          <div class="page-back">
+            <a class="button" href="skills.html">Back to skill ladder</a>
+          </div>
+        </div>
+      `;
+    </script>
+  </body>
+</html>

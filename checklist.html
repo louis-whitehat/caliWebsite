@@ -1,0 +1,154 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta
+      name="description"
+      content="Calisthenics skill checklist with progress tracking, difficulty, time to achieve, and progression details."
+    />
+    <title>Skill Checklist | LouisAthletics</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=swap"
+      rel="stylesheet"
+    />
+    <link rel="stylesheet" href="styles.css" />
+  </head>
+  <body>
+    <header class="site-header">
+      <div class="container nav-wrap">
+        <div class="brand">
+          <span class="brand-mark">L</span>
+          <span>LouisAthletics</span>
+        </div>
+        <nav class="main-nav" aria-label="Main navigation">
+          <a href="index.html">Home</a>
+          <a href="skills.html">Skills</a>
+          <a href="checklist.html">Checklist</a>
+          <a href="athletes.html">Athletes</a>
+        </nav>
+        <a class="button button-small" href="skills.html">View Ladder</a>
+      </div>
+    </header>
+
+    <main class="skills-page">
+      <div class="container">
+        <div class="skills-header">
+          <p class="eyebrow">Progress tracker</p>
+          <h1>Skill checklist.</h1>
+        </div>
+
+        <div class="checklist-summary">
+          <div class="summary-box">
+            <span>Completed</span>
+            <strong id="completed-count">0</strong>
+          </div>
+          <div class="summary-box">
+            <span>Left</span>
+            <strong id="remaining-count">0</strong>
+          </div>
+          <div class="summary-box">
+            <span>Total</span>
+            <strong id="total-count">0</strong>
+          </div>
+        </div>
+
+        <div id="checklist-list" class="checklist-list"></div>
+
+        <div class="page-back">
+          <button id="reset-checklist" class="button button-secondary" type="button">Renew</button>
+        </div>
+      </div>
+    </main>
+
+    <footer class="site-footer">
+      <div class="container footer-wrap">
+        <p>© <span id="year"></span> LouisAthletics</p>
+        <a href="index.html">Back home</a>
+      </div>
+    </footer>
+
+    <script src="script.js"></script>
+    <script>
+      const checklistSkills = [
+        { id: 'planche', name: 'Planche', difficulty: 'Hardest', time: '6-18 months', href: 'skill-detail.html?skill=planche' },
+        { id: '90-degree-handstand-push-up', name: '90 Degree Handstand Push Up', difficulty: 'Hardest', time: '8-20 months', href: 'skill-detail.html?skill=90-degree-handstand-push-up' },
+        { id: 'deep-handstand-push-up', name: 'Deep Handstand Push Up', difficulty: 'Very Hard', time: '8-18 months', href: 'skill-detail.html?skill=deep-handstand-push-up' },
+        { id: 'front-lever', name: 'Front Lever', difficulty: 'Very Hard', time: '6-15 months', href: 'skill-detail.html?skill=front-lever' },
+        { id: 'back-lever', name: 'Back Lever', difficulty: 'Very Hard', time: '6-16 months', href: 'skill-detail.html?skill=back-lever' },
+        { id: 'human-flag', name: 'Human Flag', difficulty: 'Hard', time: '8-18 months', href: 'skill-detail.html?skill=human-flag' },
+        { id: 'one-arm-pull-up', name: 'One Arm Pull Up', difficulty: 'Hard', time: '12-24 months', href: 'skill-detail.html?skill=one-arm-pull-up' },
+        { id: 'dragon-flag', name: 'Dragon Flag', difficulty: 'Hard', time: '6-14 months', href: 'skill-detail.html?skill=dragon-flag' },
+        { id: 'ring-dip', name: 'Ring Dip', difficulty: 'Medium', time: '4-10 months', href: 'skill-detail.html?skill=ring-dip' },
+        { id: 'pull-up', name: 'Pull Up', difficulty: 'Easy', time: '2-6 months', href: 'skill-detail.html?skill=pull-up' },
+        { id: 'dip', name: 'Dip', difficulty: 'Easy', time: '2-8 months', href: 'skill-detail.html?skill=dip' },
+        { id: 'normal-handstand-push-up', name: 'Normal Handstand Push Up', difficulty: 'Easy', time: '4-12 months', href: 'skill-detail.html?skill=normal-handstand-push-up' },
+        { id: 'handstand', name: 'Handstand', difficulty: 'Easy', time: '1-6 months', href: 'skill-detail.html?skill=handstand' },
+        { id: 'muscle-up', name: 'Muscle Up', difficulty: 'Easy', time: '4-12 months', href: 'skill-detail.html?skill=muscle-up' },
+        { id: 'push-up', name: 'Push Up', difficulty: 'Easiest', time: '1-3 months', href: 'skill-detail.html?skill=push-up' }
+      ];
+
+      const checklistKey = 'louisathletics-checklist';
+      const listContainer = document.getElementById('checklist-list');
+      const completedCountEl = document.getElementById('completed-count');
+      const remainingCountEl = document.getElementById('remaining-count');
+      const totalCountEl = document.getElementById('total-count');
+      const resetButton = document.getElementById('reset-checklist');
+
+      const loadChecklist = () => {
+        const saved = JSON.parse(localStorage.getItem(checklistKey) || '{}');
+        return checklistSkills.reduce((acc, skill) => {
+          acc[skill.id] = !!saved[skill.id];
+          return acc;
+        }, {});
+      };
+
+      const saveChecklist = (state) => {
+        localStorage.setItem(checklistKey, JSON.stringify(state));
+      };
+
+      const renderChecklist = () => {
+        const state = loadChecklist();
+        const completed = checklistSkills.filter((skill) => state[skill.id]).length;
+        const remaining = checklistSkills.length - completed;
+
+        completedCountEl.textContent = completed;
+        remainingCountEl.textContent = remaining;
+        totalCountEl.textContent = checklistSkills.length;
+
+        listContainer.innerHTML = checklistSkills.map((skill) => {
+          const checked = state[skill.id] ? 'checked' : '';
+          return `
+            <div class="checklist-row ${checked ? 'done' : ''}">
+              <label class="checklist-item">
+                <input type="checkbox" data-skill-id="${skill.id}" ${checked} />
+                <span class="checkmark"></span>
+              </label>
+              <a class="checklist-name" href="${skill.href}">${skill.name}</a>
+              <span class="skill-level ${skill.difficulty.toLowerCase().replace(/\s+/g, '-') === 'very-hard' ? 'very-hard' : skill.difficulty.toLowerCase().replace(/\s+/g, '-') === 'hardest' ? 'hardest' : skill.difficulty.toLowerCase().replace(/\s+/g, '-') === 'hard' ? 'hard' : skill.difficulty.toLowerCase().replace(/\s+/g, '-') === 'medium' ? 'medium' : skill.difficulty.toLowerCase().replace(/\s+/g, '-') === 'easy' ? 'easy' : 'easiest'}">${skill.difficulty}</span>
+              <span class="checklist-time">${skill.time}</span>
+            </div>
+          `;
+        }).join('');
+
+        document.querySelectorAll('[data-skill-id]').forEach((checkbox) => {
+          checkbox.addEventListener('change', (event) => {
+            const nextState = loadChecklist();
+            nextState[event.target.dataset.skillId] = event.target.checked;
+            saveChecklist(nextState);
+            renderChecklist();
+          });
+        });
+      };
+
+      resetButton.addEventListener('click', () => {
+        localStorage.removeItem(checklistKey);
+        renderChecklist();
+      });
+
+      renderChecklist();
+    </script>
+  </body>
+</html>
