@@ -1,0 +1,335 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta
+      name="description"
+      content="Calisthenics training for strength, mobility, and body control. Build your best body with bodyweight workouts from beginner to advanced."
+    />
+    <title>ForgeFlow Calisthenics</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=swap"
+      rel="stylesheet"
+    />
+    <link rel="stylesheet" href="styles.css" />
+  </head>
+  <body>
+    <header class="site-header">
+      <div class="container nav-wrap">
+        <div class="brand">
+          <span class="brand-mark">F</span>
+          <span>ForgeFlow</span>
+        </div>
+        <nav class="main-nav" aria-label="Main navigation">
+          <a href="#about">About</a>
+          <a href="#programs">Programs</a>
+          <a href="#moves">Moves</a>
+          <a href="#pricing">Pricing</a>
+        </nav>
+        <a class="button button-small" href="#pricing">Start Now</a>
+      </div>
+    </header>
+
+    <main>
+      <section class="hero">
+        <div class="container hero-grid">
+          <div class="hero-copy">
+            <p class="eyebrow">Train with your body, not against it</p>
+            <h1>Build strength, mobility, and control.</h1>
+            <p class="lead">
+              From pull-ups and dips to handstands and muscle-ups, ForgeFlow helps
+              you move better, get stronger, and look athletic with progressive
+              calisthenics training.
+            </p>
+            <div class="cta-row">
+              <a class="button" href="#programs">View Programs</a>
+              <a class="button button-secondary" href="#moves">Explore Moves</a>
+            </div>
+            <ul class="hero-stats" aria-label="Key stats">
+              <li><strong>12k+</strong><span>athletes coached</span></li>
+              <li><strong>4.9/5</strong><span>community rating</span></li>
+              <li><strong>30 min</strong><span>daily sessions</span></li>
+            </ul>
+          </div>
+
+          <div class="hero-visual" aria-label="Calisthenics training illustration">
+            <div class="visual-card visual-main">
+              <div class="badge">Beginner to Advanced</div>
+              <div class="movement-preview">
+                <div class="bar"></div>
+                <div class="person">
+                  <span class="head"></span>
+                  <span class="torso"></span>
+                  <span class="arm arm-left"></span>
+                  <span class="arm arm-right"></span>
+                  <span class="leg leg-left"></span>
+                  <span class="leg leg-right"></span>
+                </div>
+              </div>
+            </div>
+            <div class="visual-card visual-mini">
+              <p>Weekly Focus</p>
+              <strong>Push + Pull + Core</strong>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <section class="logo-strip" aria-label="Partners and results">
+        <div class="container logo-row">
+          <span>Strength</span>
+          <span>Mobility</span>
+          <span>Body Control</span>
+          <span>Functional Power</span>
+        </div>
+      </section>
+
+      <section id="about" class="section">
+        <div class="container two-col">
+          <div>
+            <p class="eyebrow">Why calisthenics?</p>
+            <h2>Train smarter, not harder.</h2>
+          </div>
+          <div>
+            <p>
+              Calisthenics builds real-world strength with movements that improve
+              coordination, flexibility, balance, and resilience. It fits into any
+              lifestyle because your body is your equipment.
+            </p>
+          </div>
+        </div>
+      </section>
+
+      <section id="programs" class="section alt-section">
+        <div class="container">
+          <div class="section-header">
+            <p class="eyebrow">Programs</p>
+            <h2>Choose your path.</h2>
+          </div>
+
+          <div class="card-grid three-up">
+            <article class="info-card">
+              <div class="icon">01</div>
+              <h3>Foundation</h3>
+              <p>Learn proper form, basic strength, and easy progressions for beginners.</p>
+              <ul>
+                <li>3 workouts per week</li>
+                <li>Bodyweight basics</li>
+                <li>Mobility routines</li>
+              </ul>
+            </article>
+
+            <article class="info-card featured">
+              <div class="icon">02</div>
+              <h3>Strength Builder</h3>
+              <p>Develop muscle, skill, and explosive power with structured progressive overload.</p>
+              <ul>
+                <li>Pull-ups and dips</li>
+                <li>Core endurance</li>
+                <li>Skill ladder progressions</li>
+              </ul>
+            </article>
+
+            <article class="info-card">
+              <div class="icon">03</div>
+              <h3>Advanced Flow</h3>
+              <p>Refine elite skills and performance with advanced conditioning and skill work.</p>
+              <ul>
+                <li>Handstand balance</li>
+                <li>Muscle-up progressions</li>
+                <li>High-intensity conditioning</li>
+              </ul>
+            </article>
+          </div>
+        </div>
+      </section>
+
+      <section id="moves" class="section">
+        <div class="container">
+          <div class="section-header">
+            <p class="eyebrow">Core movements</p>
+            <h2>Build a complete body.</h2>
+          </div>
+
+          <div class="exercise-grid">
+            <button class="exercise active" type="button" data-filter="all">All</button>
+            <button class="exercise" type="button" data-filter="pull">Pull</button>
+            <button class="exercise" type="button" data-filter="push">Push</button>
+            <button class="exercise" type="button" data-filter="legs">Legs</button>
+            <button class="exercise" type="button" data-filter="core">Core</button>
+          </div>
+
+          <div class="movement-cards">
+            <article class="movement-card" data-category="pull">
+              <span class="tag">Pull</span>
+              <h3>Pull-Up</h3>
+              <p>Back strength, grip, and upper-body control.</p>
+            </article>
+
+            <article class="movement-card" data-category="push">
+              <span class="tag">Push</span>
+              <h3>Dip</h3>
+              <p>Chest, triceps, and pressing power without equipment.</p>
+            </article>
+
+            <article class="movement-card" data-category="legs">
+              <span class="tag">Legs</span>
+              <h3>Squat</h3>
+              <p>Build powerful quads and posterior chain strength.</p>
+            </article>
+
+            <article class="movement-card" data-category="core">
+              <span class="tag">Core</span>
+              <h3>Hollow Hold</h3>
+              <p>Train your abs and full-body tension for control.</p>
+            </article>
+
+            <article class="movement-card" data-category="pull">
+              <span class="tag">Pull</span>
+              <h3>Row</h3>
+              <p>Develop back thickness and strong scapular movement.</p>
+            </article>
+
+            <article class="movement-card" data-category="push">
+              <span class="tag">Push</span>
+              <h3>Handstand</h3>
+              <p>Balance, shoulder stability, and upside-down strength.</p>
+            </article>
+          </div>
+        </div>
+      </section>
+
+      <section class="section alt-section testimonials">
+        <div class="container">
+          <div class="section-header">
+            <p class="eyebrow">Results</p>
+            <h2>What people feel.</h2>
+          </div>
+
+          <div class="testimonial-grid">
+            <blockquote>
+              “I gained strength and confidence in just a few months. The structure made each step clear.”
+              <footer>— Maya, beginner athlete</footer>
+            </blockquote>
+            <blockquote>
+              “The progressions are realistic and the workouts feel empowering, not exhausting.”
+              <footer>— Julian, office worker turned athlete</footer>
+            </blockquote>
+            <blockquote>
+              “My mobility and posture improved faster than with any gym routine I tried.”
+              <footer>— Eli, fitness coach</footer>
+            </blockquote>
+          </div>
+        </div>
+      </section>
+
+      <section class="section">
+        <div class="container">
+          <div class="section-header">
+            <p class="eyebrow">Weekly structure</p>
+            <h2>A simple system that scales.</h2>
+          </div>
+
+          <div class="plan-grid">
+            <article class="plan-card">
+              <div class="plan-day">Mon</div>
+              <h3>Pull + Grip</h3>
+              <ul>
+                <li>Pull-ups</li>
+                <li>Rows</li>
+                <li>Scap work</li>
+              </ul>
+            </article>
+
+            <article class="plan-card">
+              <div class="plan-day">Tue</div>
+              <h3>Core + Mobility</h3>
+              <ul>
+                <li>Hollow holds</li>
+                <li>L-Sits</li>
+                <li>Mobility flow</li>
+              </ul>
+            </article>
+
+            <article class="plan-card">
+              <div class="plan-day">Thu</div>
+              <h3>Push + Shoulders</h3>
+              <ul>
+                <li>Dips</li>
+                <li>Push-ups</li>
+                <li>Handstand prep</li>
+              </ul>
+            </article>
+
+            <article class="plan-card">
+              <div class="plan-day">Sat</div>
+              <h3>Legs + Power</h3>
+              <ul>
+                <li>Squats</li>
+                <li>Hangs</li>
+                <li>Conditioning</li>
+              </ul>
+            </article>
+          </div>
+
+          <div class="faq-wrap">
+            <details class="faq-item" open>
+              <summary>Do I need equipment?</summary>
+              <p>No. Most routines use your bodyweight, a pull-up bar, and optional parallel bars for extra progression.</p>
+            </details>
+
+            <details class="faq-item">
+              <summary>How long before I see results?</summary>
+              <p>Most people notice better energy, posture, and confidence within 4–6 weeks when they train consistently.</p>
+            </details>
+
+            <details class="faq-item">
+              <summary>Is this good for beginners?</summary>
+              <p>Yes. The program begins with skill foundations, mobility work, and simple progressions before harder variations.</p>
+            </details>
+
+            <details class="faq-item">
+              <summary>Can I train at home?</summary>
+              <p>Absolutely. The plan is designed to work at home, in a park, or in a personal training environment.</p>
+            </details>
+          </div>
+        </div>
+      </section>
+
+      <section id="pricing" class="section pricing">
+        <div class="container pricing-box">
+          <div>
+            <p class="eyebrow">Start today</p>
+            <h2>Train with a clear plan.</h2>
+          </div>
+          <div class="price-card">
+            <p class="price-label">Monthly access</p>
+            <div class="price-row">
+              <span class="price">$29</span>
+              <span class="period">/ month</span>
+            </div>
+            <ul>
+              <li>Workout plans</li>
+              <li>Technique guides</li>
+              <li>Mobility sessions</li>
+              <li>Progress tracking</li>
+            </ul>
+            <a class="button" href="#top">Join Now</a>
+          </div>
+        </div>
+      </section>
+    </main>
+
+    <footer class="site-footer">
+      <div class="container footer-wrap">
+        <p>© <span id="year"></span> ForgeFlow Calisthenics</p>
+        <a href="#about">Back to top</a>
+      </div>
+    </footer>
+
+    <script src="script.js"></script>
+  </body>
+</html>
