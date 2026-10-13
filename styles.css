@@ -598,7 +598,64 @@ blockquote footer {
 }
 
 .skills-header {
+  display: flex;
+  align-items: flex-end;
+  justify-content: space-between;
+  gap: 2rem;
   margin-bottom: 2rem;
+}
+
+.skills-title {
+  flex: 1 1 auto;
+  min-width: 0;
+}
+
+.skills-title h1 {
+  max-width: 700px;
+  margin: 0;
+  font-size: clamp(2.75rem, 5vw, 4.25rem);
+  line-height: 1.05;
+  letter-spacing: -0.06em;
+}
+
+.skill-total-count {
+  display: flex;
+  align-items: center;
+  gap: 0.65rem;
+  margin: 1rem 0 0;
+  color: var(--muted);
+  font-weight: 600;
+}
+
+.skill-search {
+  display: grid;
+  flex: 0 1 360px;
+  gap: 0.55rem;
+}
+
+.skill-search label {
+  font-weight: 600;
+}
+
+.skill-search input {
+  width: 100%;
+  min-height: 52px;
+  padding: 0.85rem 1rem;
+  color: var(--text);
+  font: inherit;
+  background: rgba(17, 30, 26, 0.82);
+  border: 1px solid var(--line);
+  border-radius: 14px;
+}
+
+.skill-search input:focus-visible {
+  outline: 2px solid rgba(124, 198, 255, 0.7);
+  outline-offset: 2px;
+}
+
+.skill-search-empty {
+  margin: 0 0 1rem;
+  color: var(--muted);
 }
 
 .skills-list {
@@ -606,10 +663,52 @@ blockquote footer {
   gap: 1rem;
 }
 
+.skill-combos {
+  margin-top: 3.5rem;
+}
+
+.skill-search-section[hidden] {
+  display: none;
+}
+
+.skill-combos h2,
+.skill-category-heading {
+  display: flex;
+  align-items: center;
+  gap: 0.7rem;
+  margin: 0 0 1.25rem;
+  font-size: clamp(1.8rem, 3vw, 2.5rem);
+  letter-spacing: -0.05em;
+}
+
+.skill-category-heading {
+  margin-top: 0;
+}
+
+.skill-count {
+  display: inline-flex;
+  min-width: 2rem;
+  height: 2rem;
+  align-items: center;
+  justify-content: center;
+  padding: 0 0.55rem;
+  border: 1px solid var(--line);
+  border-radius: 999px;
+  background: rgba(124, 198, 255, 0.1);
+  color: var(--accent);
+  font-size: 0.9rem;
+  font-weight: 700;
+  letter-spacing: 0;
+}
+
 .skill-rank-link {
   display: block;
   color: inherit;
   text-decoration: none;
+}
+
+.skill-rank-link[hidden] {
+  display: none;
 }
 
 .skill-rank {
@@ -962,6 +1061,16 @@ blockquote footer {
 }
 
 @media (max-width: 680px) {
+  .skills-header {
+    align-items: stretch;
+    flex-direction: column;
+    gap: 1rem;
+  }
+
+  .skill-search {
+    flex-basis: auto;
+  }
+
   .main-nav {
     display: none;
   }

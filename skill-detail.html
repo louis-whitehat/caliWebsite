@@ -153,6 +153,86 @@
           progressions: ['Pull-up mechanics', 'Dip strength', 'False grip work', 'Negative muscle-up', 'Full muscle-up'],
           time: '4 to 12 months depending on base strength.'
         },
+        'planche-push-up': {
+          name: 'Planche Push-Up',
+          difficulty: 'Hardest',
+          badge: 'hardest',
+          description: 'A planche push-up combines a full planche hold with a controlled pressing movement. It demands exceptional shoulder strength, wrist preparation, and full-body tension.',
+          progressions: ['Pseudo planche push-up', 'Tuck planche hold', 'Planche lean push-up', 'Tuck planche push-up', 'Full planche push-up'],
+          time: 'Often several years of progressive planche and pressing training.'
+        },
+        'planche-to-handstand': {
+          name: 'Planche to Handstand',
+          difficulty: 'Hardest',
+          badge: 'hardest',
+          description: 'This strength transition presses from a horizontal planche into a vertical handstand without relying on a kip.',
+          progressions: ['Wall handstand', 'Tuck planche', 'L-sit press to handstand', 'Straddle planche press drills', 'Planche to handstand'],
+          time: 'Usually several years of dedicated straight-arm strength and balance practice.'
+        },
+        'handstand-to-planche': {
+          name: 'Handstand to Planche',
+          difficulty: 'Hardest',
+          badge: 'hardest',
+          description: 'Lower from a handstand into a planche while maintaining control through the shoulders and keeping the body rigid.',
+          progressions: ['Wall handstand negative', 'Planche lean', 'Tuck planche negative', 'Straddle planche negative', 'Handstand to planche'],
+          time: 'Usually several years, depending on planche strength and handstand control.'
+        },
+        '360-muscle-up': {
+          name: '360 Muscle-Up',
+          difficulty: 'Hardest',
+          badge: 'hardest',
+          description: 'A dynamic bar skill that uses a full-body rotation around the bar and finishes in a secure muscle-up support. It requires timing, power, and safe bar awareness.',
+          progressions: ['Swing and hollow-body control', 'Explosive pull-up', 'Assisted rotation drills', 'High pull to support', '360 muscle-up'],
+          time: 'Typically many months to years of coached, progressive practice.'
+        },
+        'one-arm-pull-up-to-muscle-up': {
+          name: 'One-Arm Pull-Up to Muscle-Up',
+          difficulty: 'Hardest',
+          badge: 'hardest',
+          description: 'An advanced pulling sequence linking a one-arm pull-up to a transition above the bar. It requires exceptional unilateral strength and precise technique.',
+          progressions: ['Strict pull-ups', 'Assisted one-arm pulls', 'One-arm pull-up negatives', 'High muscle-up pulls', 'Practice the transition separately'],
+          time: 'A long-term goal that can take several years of progressive training.'
+        },
+        'muscle-up-to-handstand': {
+          name: 'Muscle-Up to Handstand',
+          difficulty: 'Very Hard',
+          badge: 'very-hard',
+          description: 'Move from a bar muscle-up support into a balanced handstand on the bar, combining pulling power, pressing strength, and balance.',
+          progressions: ['Strict muscle-up', 'Stable straight-bar support', 'Wall handstand', 'Handstand balance on low parallel bars', 'Muscle-up to handstand'],
+          time: 'Often 1 to 3 years after building a consistent muscle-up and handstand.'
+        },
+        'front-lever-pull-up': {
+          name: 'Front Lever Pull-Up',
+          difficulty: 'Very Hard',
+          badge: 'very-hard',
+          description: 'Pull the body from a front lever while maintaining a straight horizontal line. This combines advanced back strength with strict core control.',
+          progressions: ['Tuck front lever', 'Advanced tuck rows', 'Straddle front lever pulls', 'Full front lever holds', 'Front lever pull-up'],
+          time: 'Often 1 to 3 years of focused front-lever strength work.'
+        },
+        'back-lever-pull-up': {
+          name: 'Back Lever Pull-Up',
+          difficulty: 'Hard',
+          badge: 'hard',
+          description: 'A controlled pull performed from a back-lever position. Build shoulder tolerance carefully and progress gradually through lever variations.',
+          progressions: ['Skin-the-cat preparation', 'Tuck back lever', 'Back lever rows in tuck', 'Straddle back lever pulls', 'Back lever pull-up'],
+          time: 'Often 1 to 3 years, depending on shoulder preparation and pulling strength.'
+        },
+        'l-sit-to-handstand': {
+          name: 'L-Sit to Handstand',
+          difficulty: 'Hard',
+          badge: 'hard',
+          description: 'Press from an L-sit into a handstand using shoulder strength, compression, and balance rather than a jump.',
+          progressions: ['L-sit hold', 'Pike compression lifts', 'Wall handstand', 'Tuck press drills', 'L-sit to handstand'],
+          time: 'Several months to a few years depending on flexibility and pressing strength.'
+        },
+        'human-flag-pull-up': {
+          name: 'Human Flag Pull-Up',
+          difficulty: 'Hard',
+          badge: 'hard',
+          description: 'Perform a controlled pulling action while holding a human flag. It requires strong grip, shoulders, and obliques on both sides.',
+          progressions: ['Side plank and grip strength', 'Vertical flag holds', 'Tuck human flag', 'Assisted flag pulls', 'Human flag pull-up'],
+          time: 'Often 1 to 3 years of progressive lateral-strength training.'
+        },
         'push-up': {
           name: 'Push Up',
           difficulty: 'Easiest',
@@ -165,9 +245,39 @@
 
       const params = new URLSearchParams(window.location.search);
       const key = params.get('skill') || 'planche';
-      const skill = skillData[key] || skillData.planche;
+      const additionalSkill = window.additionalSkills?.find((item) => {
+        const slug = item.name
+          .toLocaleLowerCase()
+          .normalize('NFD')
+          .replace(/[\u0300-\u036f]/g, '')
+          .replace(/[^a-z0-9]+/g, '-')
+          .replace(/^-|-$/g, '');
+        return slug === key;
+      });
+      const skill = skillData[key] || (additionalSkill && {
+        name: additionalSkill.name,
+        difficulty: additionalSkill.difficulty,
+        badge: additionalSkill.badge,
+        description: additionalSkill.description,
+        progressions: [
+          `Build the prerequisite strength for ${additionalSkill.name}.`,
+          `Practice a scaled or assisted variation with strict form.`,
+          `Gradually work toward the full ${additionalSkill.name}.`
+        ],
+        time: 'Progress varies with training history, consistency, recovery, and individual strengths.'
+      });
 
       const content = document.getElementById('skill-detail-content');
+      if (!skill) {
+        content.innerHTML = `
+          <div class="skill-detail-card">
+            <p class="eyebrow">Skill detail</p>
+            <h1>Skill not found</h1>
+            <p>That skill is not in the ladder yet.</p>
+            <a class="button" href="skills.html">Back to skill ladder</a>
+          </div>
+        `;
+      } else {
       content.innerHTML = `
         <div class="skill-detail-card">
           <p class="eyebrow">Skill detail</p>
@@ -204,6 +314,7 @@
           </div>
         </div>
       `;
+      }
     </script>
   </body>
 </html>

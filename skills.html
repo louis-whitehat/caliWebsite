@@ -35,11 +35,32 @@
     <main class="skills-page">
       <div class="container">
         <div class="skills-header">
-          <p class="eyebrow">Skill ranking</p>
-          <h1>Calisthenics difficulty ladder.</h1>
+          <div class="skills-title">
+            <p class="eyebrow">Skill ranking</p>
+            <h1>Calisthenics difficulty ladder.</h1>
+            <p class="skill-total-count">
+              Total listings <span class="skill-count" id="skill-total-count">0</span>
+            </p>
+          </div>
+          <div class="skill-search">
+            <label for="skill-search-input">Search skills</label>
+            <input
+              id="skill-search-input"
+              type="search"
+              placeholder="Type a skill name..."
+              autocomplete="off"
+            />
+          </div>
         </div>
+        <p class="skill-search-empty" id="skill-search-empty" role="status" hidden>
+          No skills found. Try another search.
+        </p>
 
-        <div class="skills-list">
+        <section class="skill-search-section">
+          <h2 class="skill-category-heading">
+            Skills <span class="skill-count" id="skill-count" aria-label="skills">0</span>
+          </h2>
+          <div class="skills-list" id="skill-list">
           <a class="skill-rank-link" href="skill-detail.html?skill=planche">
             <article class="skill-rank">
               <div class="rank-number">#1</div>
@@ -204,7 +225,126 @@
               <div class="skill-level easiest">Easiest</div>
             </article>
           </a>
-        </div>
+          </div>
+        </section>
+
+        <section id="skill-combos-section" class="skill-combos skill-search-section" aria-labelledby="skill-combos-heading">
+          <h2 id="skill-combos-heading">
+            Skill combos <span class="skill-count" id="skill-combo-count" aria-label="combos">0</span>
+          </h2>
+          <div class="skills-list">
+            <a class="skill-rank-link" href="skill-detail.html?skill=planche-push-up">
+              <article class="skill-rank">
+                <div class="rank-number">C1</div>
+                <div class="skill-info">
+                  <h3>Planche Push-Up</h3>
+                  <p>A controlled push-up performed while holding the body horizontal in a planche.</p>
+                </div>
+                <div class="skill-level hardest">Hardest</div>
+              </article>
+            </a>
+
+            <a class="skill-rank-link" href="skill-detail.html?skill=planche-to-handstand">
+              <article class="skill-rank">
+                <div class="rank-number">C2</div>
+                <div class="skill-info">
+                  <h3>Planche to Handstand</h3>
+                  <p>Press from a planche into a balanced handstand without using momentum.</p>
+                </div>
+                <div class="skill-level hardest">Hardest</div>
+              </article>
+            </a>
+
+            <a class="skill-rank-link" href="skill-detail.html?skill=handstand-to-planche">
+              <article class="skill-rank">
+                <div class="rank-number">C3</div>
+                <div class="skill-info">
+                  <h3>Handstand to Planche</h3>
+                  <p>Lower from a handstand into a steady planche with control.</p>
+                </div>
+                <div class="skill-level hardest">Hardest</div>
+              </article>
+            </a>
+
+            <a class="skill-rank-link" href="skill-detail.html?skill=360-muscle-up">
+              <article class="skill-rank">
+                <div class="rank-number">C4</div>
+                <div class="skill-info">
+                  <h3>360 Muscle-Up</h3>
+                  <p>Rotate a full turn around the bar and finish in a muscle-up support.</p>
+                </div>
+                <div class="skill-level hardest">Hardest</div>
+              </article>
+            </a>
+
+            <a class="skill-rank-link" href="skill-detail.html?skill=one-arm-pull-up-to-muscle-up">
+              <article class="skill-rank">
+                <div class="rank-number">C5</div>
+                <div class="skill-info">
+                  <h3>One-Arm Pull-Up to Muscle-Up</h3>
+                  <p>Combine a one-arm pull with a controlled transition above the bar.</p>
+                </div>
+                <div class="skill-level hardest">Hardest</div>
+              </article>
+            </a>
+
+            <a class="skill-rank-link" href="skill-detail.html?skill=muscle-up-to-handstand">
+              <article class="skill-rank">
+                <div class="rank-number">C6</div>
+                <div class="skill-info">
+                  <h3>Muscle-Up to Handstand</h3>
+                  <p>Move from a bar muscle-up into a stable handstand on the bar.</p>
+                </div>
+                <div class="skill-level very-hard">Very Hard</div>
+              </article>
+            </a>
+
+            <a class="skill-rank-link" href="skill-detail.html?skill=front-lever-pull-up">
+              <article class="skill-rank">
+                <div class="rank-number">C7</div>
+                <div class="skill-info">
+                  <h3>Front Lever Pull-Up</h3>
+                  <p>Pull from a horizontal front lever while keeping the body line tight.</p>
+                </div>
+                <div class="skill-level very-hard">Very Hard</div>
+              </article>
+            </a>
+
+            <a class="skill-rank-link" href="skill-detail.html?skill=back-lever-pull-up">
+              <article class="skill-rank">
+                <div class="rank-number">C8</div>
+                <div class="skill-info">
+                  <h3>Back Lever Pull-Up</h3>
+                  <p>Pull through a back-lever position using strength and shoulder control.</p>
+                </div>
+                <div class="skill-level hard">Hard</div>
+              </article>
+            </a>
+
+            <a class="skill-rank-link" href="skill-detail.html?skill=l-sit-to-handstand">
+              <article class="skill-rank">
+                <div class="rank-number">C9</div>
+                <div class="skill-info">
+                  <h3>L-Sit to Handstand</h3>
+                  <p>Press from an L-sit into a handstand with straight-arm strength and balance.</p>
+                </div>
+                <div class="skill-level hard">Hard</div>
+              </article>
+            </a>
+
+            <a class="skill-rank-link" href="skill-detail.html?skill=human-flag-pull-up">
+              <article class="skill-rank">
+                <div class="rank-number">C10</div>
+                <div class="skill-info">
+                  <h3>Human Flag Pull-Up</h3>
+                  <p>Perform a controlled pull while holding the body out in a human flag.</p>
+                </div>
+                <div class="skill-level hard">Hard</div>
+              </article>
+            </a>
+          </div>
+        </section>
+        <div id="skill-catalog"></div>
       </div>
     </main>
 
